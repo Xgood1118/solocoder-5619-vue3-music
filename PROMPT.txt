@@ -1,0 +1,55 @@
+写一个网页音乐播放器，技术栈 Vue 3 + Vite。本地音乐文件管理 + 在线播放 + 桌面歌词那种。
+
+音乐库：
+- 添加本地音乐：选择文件夹、扫描音乐文件（mp3/flac/wav/aac/ogg）
+- 自动解析元数据（ID3 标签：标题、艺术家、专辑、年份、封面、歌词）
+- 元数据缺失时文件名智能解析（"歌手 - 歌名.mp3"）
+- 音乐文件存储位置记录（用 File System Access API 可以直接拿文件句柄，但兼容性不好，先用 URL.createObjectURL 临时访问）
+- 多个音乐源：本地 + 用户提供的 API（mock 一个搜索接口吐假数据）
+
+播放控制：
+- 播放、暂停、上一首、下一首
+- 进度条拖动跳转
+- 音量控制、静音
+- 播放模式：列表循环、单曲循环、随机播放、顺序播放
+- 倍速播放（0.5x - 2x）
+- 淡入淡出（切换歌曲时 0.5 秒过渡）
+- 均衡器（10 段 EQ，预设：流行/摇滚/古典/爵士/自定义）
+- 跨标签页控制：Media Session API 让浏览器媒体控件（锁屏、任务栏）能控制播放
+
+歌词：
+- LRC 格式歌词解析（按时间戳分行）
+- 桌面歌词（独立小窗，永远置顶，背景透明，点击穿透）
+- 歌词高亮当前行、可点击跳转
+- 歌词翻译（mock 一个翻译 API）
+- 卡拉 OK 模式（按音节高亮，需要增强 LRC）
+
+歌单：
+- 创建/编辑/删除歌单
+- 添加/移除歌曲
+- 拖拽排序
+- 歌单封面（自动取前 4 首的封面拼成九宫格）
+- 歌单导入/导出（m3u 格式）
+
+收藏：
+- 收藏歌曲、艺术家、专辑
+- "我喜欢"歌单自动维护
+
+历史：
+- 播放历史（按时间倒序）
+- 听歌时长统计
+- 每日/每周/每月收听报告
+- 最常听的歌手/歌曲/时段
+
+搜索：
+- 全文搜索（标题、艺术家、专辑、歌词）
+- 搜索结果按相关度排序
+- 搜索历史
+
+UI：深色为主，封面图自动取主色调作为强调色（用 canvas 提取），专辑封面做成圆形 3D 旋转（CD 那种）。迷你模式：底部一条窄栏，只有封面、标题、播放控制、进度条。
+
+音频可视化：用 Web Audio API + AnalyserNode 做频谱可视化（条形/环形/波浪三种模式）。
+
+代码组织：src/views（Library、Playlist、Search、Settings、Stats）、src/components（Player、Lyrics、Equalizer、Visualizer、PlaylistCard）、src/stores（usePlayerStore、useMusicStore、usePlaylistStore）、src/utils（音频解码、ID3 解析、LRC 解析、可视化）、src/audio（AudioContext、EQ、MediaSession）、src/types。
+
+依赖：vue、vue-router、pinia、music-metadata-browser（ID3 解析）、color-thief-browser（主色提取）、dayjs。≤ 8 个。

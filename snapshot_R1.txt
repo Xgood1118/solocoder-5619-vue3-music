@@ -1,0 +1,25 @@
+uid=74_0 RootWebArea "SoundWave - 音乐播放器" url="http://localhost:8181/library"
+  uid=74_1 complementary
+    uid=74_2 heading "SoundWave" level="1"
+    uid=74_3 StaticText "Music Player"
+    uid=74_4 navigation
+      uid=74_5 button "音乐库"
+      uid=74_6 button "歌单"
+      uid=74_7 button "搜索"
+      uid=74_8 button "统计"
+      uid=74_9 button "设置"
+    uid=74_10 StaticText "歌单"
+    uid=74_11 button
+    uid=74_12 button "我喜欢"
+  uid=74_13 main
+    uid=74_14 button
+    uid=74_15 button
+    uid=74_16 heading "音乐库" level="1"
+    uid=74_17 StaticText "2 首歌曲 · 0 首本地 · 总时长 0小时8分钟"
+    uid=74_18 form
+      uid=74_19 textbox "搜索歌曲、歌手、专辑或歌词..."
+    uid=74_20 heading "导入本地音乐" level="3"
+    uid=74_21 StaticText "选择文件夹或拖拽文件到此处，支持 MP3、FLAC、WAV、AAC、OGG 格式"
+    uid=74_22 button "选择文件夹"
+    uid=74_23 StaticText "自动解析 ID3 元数据"
+  uid=74_24 StaticText "No song playing"
