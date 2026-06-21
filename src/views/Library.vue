@@ -6,7 +6,7 @@ import { usePlayerStore } from '@/stores/usePlayerStore'
 import ImportZone from '@/components/library/ImportZone.vue'
 import SongList from '@/components/library/SongList.vue'
 import SearchBar from '@/components/search/SearchBar.vue'
-import { mockSearch } from '@/utils/mock-api'
+import { mockSearch, MOCK_SONGS } from '@/utils/mock-api'
 import type { Song } from '@/types/song'
 
 const musicStore = useMusicStore()
@@ -70,9 +70,9 @@ function shuffleAll() {
 
 onMounted(async () => {
   await musicStore.loadSongs()
-  // Add mock online songs for demo
-  const resp = await mockSearch('周杰伦')
-  for (const s of resp.results) {
+  // Ensure all demo online songs are in the library (not persisted to DB,
+  // kept in memory so the user sees content on first launch)
+  for (const s of MOCK_SONGS) {
     if (!musicStore.songs.find(sg => sg.id === s.id)) {
       musicStore.songs.push(s)
     }
@@ -82,21 +82,23 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col gap-6 h-full min-h-0">
-    <div class="flex items-start justify-between gap-8 shrink-0">
-      <div class="flex-1">
+    <div class="flex items-center justify-between gap-6 shrink-0">
+      <div class="min-w-0 flex-1">
         <h1 class="text-3xl font-bold text-white tracking-tight">音乐库</h1>
-        <p class="text-sm text-zinc-500 mt-1.5">
+        <p class="text-sm text-zinc-500 mt-1.5 whitespace-nowrap">
           {{ stats.total }} 首歌曲 · {{ stats.local }} 首本地 · 总时长 {{ stats.hours }}小时{{ stats.minutes }}分钟
         </p>
       </div>
-      <div class="w-80 shrink-0">
+      <div class="w-80 shrink-0 max-w-[40%]">
         <SearchBar @search="handleSearch" />
       </div>
     </div>
 
-    <ImportZone v-if="stats.local === 0" />
+    <ImportZone v-if="stats.total === 0" />
 
-    <div v-else class="flex flex-col gap-4 flex-1 min-h-0">
+    <div v-if="stats.total > 0" class="flex flex-col gap-4 flex-1 min-h-0">
+      <ImportZone :compact="true" />
+
       <div class="flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2">
           <button

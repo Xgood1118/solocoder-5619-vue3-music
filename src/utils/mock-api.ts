@@ -1,6 +1,6 @@
 import type { Song } from '@/types/song'
 
-const MOCK_SONGS: Song[] = [
+export const MOCK_SONGS: Song[] = [
   { id: 'online-1', title: '星辰大海', artist: '黄霄雲', album: '星辰大海', year: '2020', duration: 256, coverUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=starfield%20ocean%20album%20cover%20digital%20art&image_size=square_hd', lyricsLrc: '[00:00.00]星辰大海\n[00:10.00]我愿变成一颗恒星\n[00:20.00]守护你的旅行\n[00:30.00]不管多远距离\n[00:40.00]我都会奔向你', source: 'online', filePath: '', fileUrl: '', addedAt: Date.now() },
   { id: 'online-2', title: '起风了', artist: '买辣椒也用券', album: '起风了', year: '2019', duration: 315, coverUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=windy%20sky%20album%20cover%20anime%20style&image_size=square_hd', lyricsLrc: '[00:00.00]起风了\n[00:12.00]我曾难自拔于世界之大\n[00:22.00]也沉溺于其中梦话\n[00:32.00]不得真假不做挣扎\n[00:42.00]不惧笑话', source: 'online', filePath: '', fileUrl: '', addedAt: Date.now() },
   { id: 'online-3', title: '孤勇者', artist: '陈奕迅', album: '孤勇者', year: '2021', duration: 262, coverUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=lone%20warrior%20album%20cover%20dark%20epic&image_size=square_hd', lyricsLrc: '[00:00.00]孤勇者\n[00:08.00]爱你孤身走暗巷\n[00:16.00]爱你不跪的模样\n[00:24.00]爱你对峙过绝望\n[00:32.00]不肯哭一场', source: 'online', filePath: '', fileUrl: '', addedAt: Date.now() },
